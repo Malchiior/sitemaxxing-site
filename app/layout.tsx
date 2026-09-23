@@ -9,6 +9,7 @@ const tagline =
   "Mog your competition with a fit check from our sitemaxxing AI agent.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sitemaxxing.vercel.app"),
   title: "Sitemaxxing",
   description: tagline,
   openGraph: {
