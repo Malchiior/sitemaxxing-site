@@ -3,10 +3,13 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 const tagline =
-  "Mog your competition with a fit check from our sitemaxxing AI agent.";
+  "Get your website launch-ready. Check mobile, Google and AI readability, then get a prioritized fix list for your coding agent.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sitemaxxing.vercel.app"),
@@ -27,7 +30,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
       <body className="min-h-screen font-sans">{children}</body>
     </html>
   );

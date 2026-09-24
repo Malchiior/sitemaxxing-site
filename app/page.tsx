@@ -1,143 +1,223 @@
 import Image from "next/image";
+import {
+  Icon,
+  BrandLockup,
+  SETUP_TEXT,
+  SMS_HREF,
+  SiteHeader,
+  SiteFooter,
+} from "./components/site-chrome";
 
-const NUMBER_DISPLAY = "+1 (628) 246-3032";
-const NUMBER_TEL = "+16282463032";
-const SETUP_TEXT = "Set this up for me: aiworthusing.com/agent-index/sitemaxxing";
-const SMS_HREF = `sms:${NUMBER_TEL}?&body=${encodeURIComponent(SETUP_TEXT)}`;
-
-const whatYouGet = [
-  {
-    title: "9 screens, measured",
-    body:
-      "Your page on nine real screen sizes, from a 360px Android to a 2560px ultrawide. Every issue is a measurement with the element and the pixel numbers, not a guess.",
-  },
-  {
-    title: "Google + AI readability",
-    body:
-      "A drawn-to-scale Google result preview showing where your title and description get cut off, and whether ChatGPT, Claude and Perplexity can read your site.",
-  },
-  {
-    title: "A fix list for your coding agent",
-    body:
-      "Reply “fix” and it sends a prompt built from the measurements. Paste it into Claude Code, Codex or Cursor as is.",
-  },
+const features = [
+  [
+    "9 screens, measured",
+    "Your page on nine real screen sizes, from a 360px Android to a 2560px ultrawide. Every issue includes the element and the pixel measurements.",
+  ],
+  [
+    "Google + AI readability",
+    "See where your title and description get cut off in Google, and whether ChatGPT, Claude and Perplexity can read your site.",
+  ],
+  [
+    "A fix list for your coding agent",
+    "Reply “fix” for a prompt built from the measurements. Paste it into Claude Code, Codex or Cursor.",
+  ],
 ];
-
-const commands = [
-  { text: "https://yoursite.com", does: "The full check of the homepage: 9 screens, Google, AI. About a minute." },
-  { text: "pages", does: "Up to four more pages from the site’s menu, on the same 9 screens." },
-  { text: "the same URL again", does: "Re-check after a deploy: fixed, still there, new." },
-  { text: "fix", does: "The fix prompt for your coding agent, as text and as a file." },
-  { text: "status", does: "The last check’s results." },
-];
-
 export default function Home() {
   return (
-    <main className="mx-auto w-full max-w-3xl px-4 py-12 sm:px-6 sm:py-20">
-      {/* Hero */}
-      <section>
-        <h1 className="text-4xl font-semibold tracking-tight sm:text-6xl">
-          Sitemaxxing
-        </h1>
-        <p className="mt-4 text-xl leading-snug text-cream/90 sm:text-2xl">
-          Mog your competition with a fit check from our sitemaxxing AI agent.
-        </p>
-        <p className="mt-4 max-w-xl text-base text-cream/70 sm:text-lg">
-          Text it your website address. In about a minute it texts back a PDF
-          fit check: your page on 9 screen sizes, what&rsquo;s broken measured
-          not guessed, a Google result preview, whether ChatGPT, Claude and
-          Perplexity can read you, and a fix list for your coding agent.
-        </p>
-
-        <div className="mt-8 rounded-xl border border-coral/40 bg-white/5 p-5 sm:p-6">
-          <p className="text-sm font-medium uppercase tracking-wide text-coral">
-            Get your own Sitemaxxing number
-          </p>
-          <p className="mt-2 text-cream/80">
-            Text this to{" "}
-            <a href={`sms:${NUMBER_TEL}`} className="font-semibold text-cream underline decoration-coral underline-offset-4">
-              {NUMBER_DISPLAY}
-            </a>
-            :
-          </p>
-          <p className="mt-3 break-words rounded-lg bg-navy px-4 py-3 font-mono text-sm text-cream sm:text-base">
-            {SETUP_TEXT}
-          </p>
-          <p className="mt-3 text-sm text-cream/70">
-            You get your own Sitemaxxing number back. Text it any site.
-          </p>
-          <a
-            href={SMS_HREF}
-            className="mt-4 inline-block rounded-lg bg-coral px-5 py-3 font-semibold text-navy"
-          >
-            Text {NUMBER_DISPLAY}
-          </a>
-        </div>
-      </section>
-
-      {/* Example card */}
-      <section className="mt-16">
+    <>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <section className="launch-hero">
         <Image
-          src="/example-card.png"
-          alt="Sitemaxxing report card for sbeoc.com: the page on a laptop, tablet and phone, scores for phones, tablets and computers, top problems, Google result preview and AI crawler access"
-          width={1080}
-          height={1350}
+          className="scene-image"
+          src="/images/launch-hero.webp"
+          alt=""
+          fill
           priority
-          className="w-full rounded-xl border border-white/10"
+          sizes="100vw"
         />
-        <p className="mt-3 text-sm text-cream/60">
-          The report card for sbeoc.com. Reply &ldquo;pages&rdquo; and you get one
-          row per page:
-        </p>
+        <SiteHeader />
+        <main id="main" className="hero-content">
+          <p className="countdown">
+            <span />T - 4 mins
+          </p>
+          <h1>
+            Your website isn’t
+            <br />
+            launch-ready
+          </h1>
+          <p className="hero-subtitle">Until you run this 4-minute audit.</p>
+          <p className="hero-description">
+            Get a real website fix check across mobile, Google, and AI —
+            <br className="desktop-break" /> then get a prioritized fix list for
+            your coding agent.
+          </p>
+          <div className="hero-actions">
+            <a href="#audit" className="button button-white">
+              Run the 4-minute audit <Icon name="arrow" />
+            </a>
+            <a href="#example" className="button button-outline">
+              See an example report
+            </a>
+          </div>
+        </main>
+      </section>
+      <div className="landing-details">
         <Image
-          src="/example-pages-card.png"
-          alt="Sitemaxxing pages card: one row per page checked, each with scores and top problems"
-          width={1080}
-          height={1350}
-          className="mt-3 w-full rounded-xl border border-white/10"
+          className="details-scene"
+          src="/images/orbital-report.webp"
+          alt=""
+          fill
+          sizes="100vw"
         />
-      </section>
-
-      {/* What you get */}
-      <section className="mt-16">
-        <h2 className="text-2xl font-semibold sm:text-3xl">What you get</h2>
-        <ul className="mt-6 space-y-5">
-          {whatYouGet.map((item) => (
-            <li key={item.title} className="border-l-2 border-coral pl-4">
-              <p className="font-semibold">{item.title}</p>
-              <p className="mt-1 text-cream/70">{item.body}</p>
-            </li>
+        <section id="audit" className="audit-section content-section">
+          <div className="audit-intro">
+            <p className="section-coordinate">01 / PRE-FLIGHT</p>
+            <p className="eyebrow">Your launch starts here</p>
+            <h2>
+              Get your website
+              <br />
+              ready for liftoff.
+            </h2>
+            <p className="muted">
+              Get your own Sitemaxxing number, then text it any website. Your
+              report comes back by text with clear next steps.
+            </p>
+            <div className="launch-sequence">
+              <span>Send your site</span>
+              <span>Get your report</span>
+              <span>Make it better</span>
+            </div>
+          </div>
+          <div className="glass setup-panel">
+            <div className="panel-heading">
+              <span className="round-icon">
+                <Icon name="phone" />
+              </span>
+              <span>
+                MISSION CONTROL <small>Website audit / SMS</small>
+              </span>
+            </div>
+            <p className="eyebrow">Run the audit</p>
+            <h3>One text. A stronger website.</h3>
+            <p>
+              Text this to <a href="sms:+16282463032">+1 (628) 246-3032</a>:
+            </p>
+            <p className="setup-message">{SETUP_TEXT}</p>
+            <a href={SMS_HREF} className="button button-coral">
+              Open text message <Icon name="arrow" />
+            </a>
+            <p className="small muted">
+              You’ll get your own Sitemaxxing number back. Text it your site to
+              start.
+            </p>
+          </div>
+        </section>
+        <section
+          className="content-section feature-section"
+          aria-label="What you get"
+        >
+          {features.map(([title, text], i) => (
+            <article key={title}>
+              <div className="feature-heading">
+                <Icon name={i === 0 ? "phone" : i === 1 ? "globe" : "file"} />
+                <span className="feature-number">0{i + 1}</span>
+              </div>
+              <h3>{title}</h3>
+              <p className="muted">{text}</p>
+            </article>
           ))}
-        </ul>
-      </section>
-
-      {/* What you can text */}
-      <section className="mt-16">
-        <h2 className="text-2xl font-semibold sm:text-3xl">What you can text</h2>
-        <ul className="mt-6 divide-y divide-white/10">
-          {commands.map((c) => (
-            <li key={c.text} className="flex flex-col gap-1 py-3 sm:flex-row sm:gap-6">
-              <code className="shrink-0 font-mono text-coral sm:w-56">{c.text}</code>
-              <span className="text-cream/70">{c.does}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Footer */}
-      <footer className="mt-20 border-t border-white/10 pt-6 text-sm text-cream/60">
-        <div className="flex flex-wrap gap-x-6 gap-y-2">
-          <a href="https://github.com/Malchiior/sitemaxxing" className="underline underline-offset-4 hover:text-cream">
-            GitHub
-          </a>
-          <a href="https://aiworthusing.com/agent-index/sitemaxxing" className="underline underline-offset-4 hover:text-cream">
-            Agent Index
-          </a>
-        </div>
-        <p className="mt-4">
-          Free, MIT, built for the AI Worth Using x OpenClaw 2.0 hackathon. Runs on Plow.
-        </p>
-      </footer>
-    </main>
+        </section>
+        <section id="example" className="content-section example-section">
+          <div className="example-intro">
+            <p className="section-coordinate">02 / MISSION BRIEFING</p>
+            <p className="eyebrow">The mission briefing</p>
+            <h2>
+              A real report.
+              <br />A clear way forward.
+            </h2>
+            <p className="muted">
+              See the public example for sbeoc.com. The full report includes a
+              downloadable PDF and a fix list for your coding agent.
+            </p>
+            <a href="/r/sbeoc.com" className="button button-coral">
+              Open report with your code <Icon name="arrow" />
+            </a>
+          </div>
+          <article
+            className="report-preview"
+            aria-label="Public example report for sbeoc.com"
+          >
+            <Image
+              src="/images/orbital-report-unlocked.webp"
+              alt=""
+              fill
+              sizes="(max-width: 800px) 100vw, 60vw"
+            />
+            <div className="preview-content">
+              <div className="preview-topline">
+                <BrandLockup />
+                <span>EXAMPLE REPORT</span>
+              </div>
+              <p className="eyebrow">Sitemaxxing fit check</p>
+              <h3>Report for sbeoc.com</h3>
+              <p className="preview-subtitle">
+                Real issues. Clear fixes. A stronger site.
+              </p>
+              <dl className="preview-scores">
+                <div>
+                  <dd>75</dd>
+                  <dt>Phones</dt>
+                </div>
+                <div>
+                  <dd>75–100</dd>
+                  <dt>Tablets</dt>
+                </div>
+                <div>
+                  <dd>100</dd>
+                  <dt>Computers</dt>
+                </div>
+              </dl>
+              <div className="preview-findings">
+                <div className="preview-bar">
+                  <Icon name="file" />
+                  <span>PRIORITIZED FIX LIST</span>
+                </div>
+                <ol>
+                  <li>
+                    <span>01</span>
+                    <div>
+                      <strong>Make every image load</strong>
+                      <p>Repair the broken logo on phones and tablets.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span>02</span>
+                    <div>
+                      <strong>Give search engines more to read</strong>
+                      <p>Add a clear headline and useful homepage copy.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span>03</span>
+                    <div>
+                      <strong>Take control of your search result</strong>
+                      <p>Add a descriptive meta description.</p>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+              <div className="preview-bottom">
+                <span>9 SCREEN SIZES</span>
+                <span>GOOGLE + AI</span>
+                <span>PDF + FIX LIST</span>
+              </div>
+            </div>
+          </article>
+        </section>
+        <SiteFooter />
+      </div>
+    </>
   );
 }
