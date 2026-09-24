@@ -61,10 +61,10 @@ export function SiteHeader({ report = false }: { report?: boolean }) {
     <header className={`site-header ${report ? "report-header" : ""}`}>
       <a className="brand" href="/" aria-label="Sitemaxxing home">
         <Image
-          src="/brand/sitemaxxing-wordmark.png"
+          src="/brand/sitemaxxing-mascot.png"
           alt="Sitemaxxing"
-          width={600}
-          height={102}
+          width={512}
+          height={475}
           priority
         />
       </a>

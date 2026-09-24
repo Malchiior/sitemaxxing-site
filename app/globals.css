@@ -1433,3 +1433,26 @@ button {
     font-size: 36px;
   }
 }
+/* Transparent mascot replaces the horizontal wordmark. */
+.site-header .brand,
+.report-header .brand {
+  width: 80px;
+}
+.site-header .brand img {
+  width: 80px;
+  height: auto;
+}
+.preview-topline > img {
+  width: 58px;
+  height: auto;
+}
+@media (max-width: 540px) {
+  .site-header .brand,
+  .report-header .brand,
+  .site-header .brand img {
+    width: 62px;
+  }
+  .preview-topline > img {
+    width: 48px;
+  }
+}

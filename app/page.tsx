@@ -157,10 +157,10 @@ export default function Home() {
             <div className="preview-content">
               <div className="preview-topline">
                 <Image
-                  src="/brand/sitemaxxing-wordmark.png"
+                  src="/brand/sitemaxxing-mascot.png"
                   alt="Sitemaxxing"
-                  width={180}
-                  height={28}
+                  width={512}
+                  height={475}
                 />
                 <span>EXAMPLE REPORT</span>
               </div>
