@@ -1,6 +1,7 @@
 import Image from "next/image";
 import {
   Icon,
+  BrandLockup,
   SETUP_TEXT,
   SMS_HREF,
   SiteHeader,
@@ -156,12 +157,7 @@ export default function Home() {
             />
             <div className="preview-content">
               <div className="preview-topline">
-                <Image
-                  src="/brand/sitemaxxing-mascot.png"
-                  alt="Sitemaxxing"
-                  width={512}
-                  height={475}
-                />
+                <BrandLockup />
                 <span>EXAMPLE REPORT</span>
               </div>
               <p className="eyebrow">Sitemaxxing fit check</p>

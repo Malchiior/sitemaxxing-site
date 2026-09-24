@@ -56,17 +56,35 @@ export function Icon({
   );
 }
 
+export function BrandLockup() {
+  return (
+    <span className="brand-lockup">
+      <span className="brand-name">
+        <Image
+          src="/brand/sitemaxxing-wordmark.png"
+          alt="Sitemaxxing"
+          width={1200}
+          height={187}
+          priority
+        />
+      </span>
+      <Image
+        className="brand-mascot"
+        src="/brand/sitemaxxing-mascot.png"
+        alt=""
+        width={512}
+        height={475}
+        priority
+      />
+    </span>
+  );
+}
+
 export function SiteHeader({ report = false }: { report?: boolean }) {
   return (
     <header className={`site-header ${report ? "report-header" : ""}`}>
       <a className="brand" href="/" aria-label="Sitemaxxing home">
-        <Image
-          src="/brand/sitemaxxing-mascot.png"
-          alt="Sitemaxxing"
-          width={512}
-          height={475}
-          priority
-        />
+        <BrandLockup />
       </a>
       {report ? (
         <nav aria-label="Report navigation" className="report-nav">

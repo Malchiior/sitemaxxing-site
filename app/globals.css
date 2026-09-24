@@ -1456,3 +1456,71 @@ button {
     width: 48px;
   }
 }
+/* Preserve the name; replace only the decorative emblem at its right. */
+.site-header .brand,
+.report-header .brand {
+  width: 300px;
+}
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+}
+.brand-name {
+  position: relative;
+  display: block;
+  flex: 1;
+  height: 24px;
+  overflow: hidden;
+}
+.site-header .brand-name img,
+.brand-name img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 122%;
+  max-width: none;
+  height: auto;
+}
+.site-header .brand-mascot,
+.brand-lockup .brand-mascot {
+  width: 52px;
+  height: auto;
+  flex-shrink: 0;
+}
+.preview-topline .brand-lockup {
+  width: 230px;
+}
+.preview-topline .brand-name {
+  height: 19px;
+}
+.preview-topline .brand-mascot {
+  width: 42px;
+}
+@media (max-width: 540px) {
+  .site-header .brand,
+  .report-header .brand {
+    width: 220px;
+  }
+  .brand-name {
+    height: 18px;
+  }
+  .site-header .brand-mascot {
+    width: 40px;
+  }
+  .brand-lockup {
+    gap: 6px;
+  }
+  .preview-topline .brand-lockup {
+    width: 190px;
+  }
+  .preview-topline .brand-name {
+    height: 16px;
+  }
+  .preview-topline .brand-mascot {
+    width: 34px;
+  }
+}
+.site-header .brand .brand-mascot { width: 52px; height: auto; }
+@media (max-width:540px) { .site-header .brand .brand-mascot { width: 40px; } }
