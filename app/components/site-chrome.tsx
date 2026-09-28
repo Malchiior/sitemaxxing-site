@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const SETUP_TEXT =
   "Set this up for me: aiworthusing.com/agent-index/sitemaxxing";
@@ -80,30 +81,30 @@ export function BrandLockup() {
   );
 }
 
-export function SiteHeader({ report = false }: { report?: boolean }) {
+export function SiteHeader({ report = false, handoff = false }: { report?: boolean; handoff?: boolean }) {
   return (
     <header className={`site-header ${report ? "report-header" : ""}`}>
-      <a className="brand" href="/" aria-label="Sitemaxxing home">
+      <Link className="brand" href="/" aria-label="Sitemaxxing home">
         <BrandLockup />
-      </a>
+      </Link>
       {report ? (
         <nav aria-label="Report navigation" className="report-nav">
-          <a className="active" href="#report" aria-current="page">
-            Report
+          <a className="active" href={handoff ? "#handoff" : "#report"} aria-current="page">
+            {handoff ? "Handoff" : "Report"}
           </a>
           <span className="nav-divider" aria-hidden="true" />
-          <a
+          <Link
             className="account-link"
             href="/#audit"
             aria-label="Get your own Sitemaxxing number"
           >
             <Icon name="user" />
-          </a>
+          </Link>
         </nav>
       ) : (
-        <a className="button button-outline header-cta" href="#audit">
+        <Link className="button button-outline header-cta" href="/#audit">
           Run the audit <Icon name="arrow" />
-        </a>
+        </Link>
       )}
     </header>
   );
@@ -111,7 +112,7 @@ export function SiteHeader({ report = false }: { report?: boolean }) {
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <a href="/">Sitemaxxing</a>
+      <Link href="/">Sitemaxxing</Link>
       <span className="footer-line" />
       <span>Better websites for a brighter tomorrow</span>
       <span className="footer-dash" />

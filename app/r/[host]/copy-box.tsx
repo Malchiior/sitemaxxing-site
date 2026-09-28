@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { Icon } from "@/app/components/site-chrome";
-export function CopyBox({ text }: { text: string }) {
+export function CopyBox({ text, label = "fix list" }: { text: string; label?: string }) {
   const [status, setStatus] = useState("");
   const content = useRef<HTMLPreElement>(null);
   const itemCount = (text.match(/^\s*\d+\.\s+/gm) ?? []).length;
@@ -31,7 +31,7 @@ export function CopyBox({ text }: { text: string }) {
           className="button copy-button"
         >
           <Icon name="copy" />
-          {status === "Copied to clipboard" ? "Copied!" : "Copy fix list"}
+          {status === "Copied to clipboard" ? "Copied!" : `Copy ${label}`}
         </button>
         <span role="status" className="small muted">
           {status}
@@ -41,12 +41,12 @@ export function CopyBox({ text }: { text: string }) {
         <div className="code-toolbar">
           <span>
             <Icon name="file" />
-            Sitemaxxing fix list
+            Sitemaxxing {label}
           </span>
           {itemCount > 0 && <span>{itemCount} items</span>}
         </div>
         <div className="code-scroll">
-          <pre ref={content} tabIndex={0} aria-label="Fix list content">
+          <pre ref={content} tabIndex={0} aria-label={`${label} content`}>
             {(text || "Your fix list isn’t available yet. Try again shortly.")
               .split("\n")
               .map((line, i) => (
