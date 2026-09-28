@@ -20,7 +20,7 @@ export function configure(p:StudioProject, tasks:Pick<Task,"label"|"page"|"kind"
   const clean=tasks.map((t,i)=>{
     if(!["screen","logo","illustration"].includes(t.kind)||!t.label.trim()||t.label.length>100||t.brief.length>1000)throw new Error("Check each output's name, type and brief.");
     if(t.page&&!p.candidates.some(c=>c.url===t.page))throw new Error("Choose a page from this report.");
-    return {...t,id:String(i+1),label:t.label.trim(),attempts:0,state:"planned" as const};
+    return {id:String(i+1),label:t.label.trim(),page:t.page,kind:t.kind,brief:t.brief,attempts:0,state:"planned" as const};
   });
   return {...p,tasks:clean,direction:direction.trim(),allowance,sampleApproved:false,version:p.version+1};
 }

@@ -1563,3 +1563,4 @@ button {
 .studio-task h3 { font-size: 22px; }
 .studio a { overflow-wrap: anywhere; }
 @media(max-width:600px) { .studio-panel { padding: 20px; } .studio-task { padding: 16px; } }
+.studio h1, .handoff-main h1 { overflow-wrap: anywhere; }

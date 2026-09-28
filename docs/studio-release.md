@@ -10,7 +10,7 @@ The initial billing path is bring your own OpenAI key. No payment processor, cre
 
 ## Spending behavior
 
-The owner saves 1–10 outputs and an allowance of 1–20 generation attempts. Each click authorizes one medium-quality 1024x1536 image request to gpt-image-2.5-flare. This is an attempt allowance, NOT a dollar spending cap or a prepaid credit balance. Provider charges vary, and the UI links to provider pricing before generation. The UI never quotes an invented dollar price.
+The owner saves 1–10 outputs and an allowance of 1–20 generation attempts. Each click authorizes one medium-quality image request (1024x1536 screens or 1024x1024 transparent logos/illustrations) to gpt-image-2.5-flare. This is an attempt allowance, NOT a dollar spending cap or a prepaid credit balance. Provider charges vary, and the UI links to provider pricing before generation. The UI never quotes an invented dollar price.
 
 A Blob ETag conditional write reserves an attempt before provider execution. Simultaneous/stale requests cannot both start. One request runs per project. No automatic retries. Uncertain failures count against the allowance; recovery is available after five minutes, but a retry still requires another explicit click. The first sample must be completed and approved before other outputs can start. Regenerating it clears approval. Scope is locked once attempts are used. The primary baseline screenshot is included when present and small enough; subsequent outputs use the approved sample as a visual reference. Other pages are selected from the measured navigation list; their concepts are not fresh audited screenshots.
 

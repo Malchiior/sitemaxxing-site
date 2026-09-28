@@ -15,7 +15,7 @@ export async function POST(req:Request,{params}:{params:Promise<{id:string}>}){
   const task=next.tasks.find(t=>t.id===taskId)!;
   const referencePath=taskId!==next.tasks[0].id&&next.tasks[0].asset?next.tasks[0].asset:task.kind==="screen"&&task.page===next.site?next.files.find(f=>f.name==="baseline-screenshot.jpg")?.path:undefined;
   const reference=referencePath?await bytes(referencePath):undefined;
-  const result=await generate(key,imagePrompt(next,task),reference||undefined);
+  const result=await generate(key,imagePrompt(next,task),reference||undefined,task.kind);
   const name=`${task.id}-${task.kind}-${task.label.toLowerCase().replace(/[^a-z0-9]+/g,"-").slice(0,65)}-v${task.attempts}.png`;
   const path=`studio/assets/${id}/${name}`;await asset(path,result.image,"image/png");
   const current=await read<StudioProject>(`projects/${id}.json`);
