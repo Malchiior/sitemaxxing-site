@@ -7,8 +7,9 @@ const base:StudioProject={id:"a".repeat(32),owner:"private-owner-id",host:"examp
 const task={label:"Home",page:base.site,kind:"screen" as const,brief:"Readable buttons"};
 const planned=()=>configure(base,[task,{...task,label:"Logo",kind:"logo"}],"Warm colors",3);
 describe("generation authorization and accounting",()=>{
+ it("requires a visual direction before planning or spending",()=>{expect(()=>configure(base,[task],"   ",2)).toThrow(/direction/);const p={...planned(),direction:""};expect(()=>reserve(p,"1",p.version)).toThrow(/direction/);expect(p.spentAttempts).toBe(0);});
  it("does not spend during planning",()=>expect(planned().spentAttempts).toBe(0));
- it("does not accept caller-injected asset paths or generation state",()=>{const t={...task,asset:"studio/assets/another-owner/private.png",state:"ready",attempts:-1};const p=configure(base,[t],"",2);expect(p.tasks[0].asset).toBeUndefined();expect(p.tasks[0].state).toBe("planned");expect(p.tasks[0].attempts).toBe(0);});
+ it("does not accept caller-injected asset paths or generation state",()=>{const t={...task,asset:"studio/assets/another-owner/private.png",state:"ready",attempts:-1};const p=configure(base,[t],"Editorial blue and ivory",2);expect(p.tasks[0].asset).toBeUndefined();expect(p.tasks[0].state).toBe("planned");expect(p.tasks[0].attempts).toBe(0);});
  it("rejects another site's page and excess scope",()=>{expect(()=>configure(base,[{...task,page:"https://evil.test"}],"",1)).toThrow();expect(()=>configure(base,[task],"",21)).toThrow();expect(()=>configure(base,[task,task],"",1)).toThrow();});
  it("requires a current version and first sample approval",()=>{const p=planned();expect(()=>reserve(p,"1",0)).toThrow();expect(()=>reserve(p,"2",p.version)).toThrow();expect(()=>approve(p,p.version)).toThrow();});
  it("reserves one attempt before execution and rejects concurrency",()=>{const p=planned();const r=reserve(p,"1",p.version);expect(r.spentAttempts).toBe(1);expect(r.tasks[0].state).toBe("running");expect(()=>reserve(r,"1",r.version)).toThrow();expect(()=>configure(r,[task],"",2)).toThrow();});

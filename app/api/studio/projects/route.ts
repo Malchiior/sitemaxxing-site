@@ -24,7 +24,7 @@ export async function POST(req:Request){
    if(typeof body.summary!=="string"||body.summary.length>20000||typeof body.fix!=="string"||body.fix.length>150000)throw new Error("Invalid report");
    const id=randomBytes(16).toString("hex");
    const candidates=[{label:"First checked page",url:url.href},...(Array.isArray(body.pages)?body.pages:[])].filter((c,i,a)=>{try{return typeof c.label==="string"&&c.label.length<=100&&new URL(c.url).origin===url.origin&&a.findIndex(x=>x.url===c.url)===i;}catch{return false;}}).slice(0,5);
-   p={id,owner,host:url.hostname,site:url.href,createdAt:new Date().toISOString(),mode:body.mode,summary:body.summary,fix:body.fix,candidates,tasks:[],direction:"",allowance:0,spentAttempts:0,sampleApproved:false,version:1,files:[]};
+   p={id,owner,host:url.hostname,site:url.href,createdAt:new Date().toISOString(),mode:body.mode,summary:body.summary,fix:body.fix,candidates,tasks:[],direction:typeof body.direction==="string"?body.direction.trim().slice(0,2000):"",allowance:0,spentAttempts:0,sampleApproved:false,version:1,files:[]};
    if(typeof body.pdf==="string"){
     const pdf=Buffer.from(body.pdf,"base64");if(pdf.length>3*1024*1024||pdf.subarray(0,5).toString()!=="%PDF-")throw new Error("Invalid PDF");
     const path=`studio/assets/${id}/baseline-report.pdf`;await asset(path,pdf,"application/pdf");p.files.push({name:"baseline-report.pdf",path,type:"application/pdf"});
