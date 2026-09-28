@@ -15,6 +15,8 @@ type Props = {
   summary: string;
   fix: string;
   unlockAction: (data: FormData) => void | Promise<void>;
+  handoff?: boolean;
+  handoffTitle?: string;
 };
 export function ReportView({
   host,
@@ -23,6 +25,8 @@ export function ReportView({
   summary,
   fix,
   unlockAction,
+  handoff = false,
+  handoffTitle,
 }: Props) {
   const base = `/r/${encodeURIComponent(host)}`;
   const counts = summary.match(
@@ -48,12 +52,12 @@ export function ReportView({
       <SiteHeader report />
       <main id="report" className="report-main">
         <div className="report-title">
-          <p className="eyebrow">Sitemaxxing fit check</p>
-          <h1>Report for {host}</h1>
+          <p className="eyebrow">{handoff ? "Design + implementation" : "Sitemaxxing fit check"}</p>
+          <h1>{handoff ? (handoffTitle ? `Your ${handoffTitle} handoff` : "Your complete Plow handoff") : `Report for ${host}`}</h1>
           <p className="report-subtitle">
             {open
               ? "Real issues. Clear fixes. A faster, stronger site."
-              : "Enter the 6-digit code from your text"}
+              : "Enter your shared 6-digit access code"}
           </p>
         </div>
         <MissionNote />
@@ -65,7 +69,7 @@ export function ReportView({
             </span>
             <div className="unlock-fields">
               <label htmlFor="code">
-                Enter the 6-digit code from your text
+                Enter your 6-digit access code
               </label>
               <div className="unlock-controls">
                 <input
@@ -83,18 +87,22 @@ export function ReportView({
                   }
                   aria-invalid={wrong || undefined}
                 />
-                <UnlockButton />
+                <UnlockButton label={handoff ? "Open handoff" : "Open report"} />
               </div>
               <p id="code-help" className="small muted">
-                We sent a 6-digit code to your phone via text message.
+                Use the code shared with this link.
                 <br />
-                Enter the code above to access your report.
+                Enter it above to access your {handoff ? "designs, ZIP and agent prompt" : "report"}.
               </p>
               {wrong && (
                 <p id="code-error" className="form-error" role="alert">
                   That code didn’t work. Check your text and try again.
                 </p>
               )}
+              {handoff && <details className="agent-details">
+                <summary>Opening this with a coding agent?</summary>
+                <p>Use the shared code to fetch <code>{base}/files/AGENT-PROMPT.md?code=CODE</code> and <code>{base}/files/{handoffTitle ? "handoff.zip" : "plow-owner-handoff.zip"}?code=CODE</code>. Replace CODE with the six-digit code, extract the ZIP, then follow AGENT-PROMPT.md with access to the actual project repositories.</p>
+              </details>}
             </div>
           </form>
         ) : (

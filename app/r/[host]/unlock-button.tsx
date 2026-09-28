@@ -1,11 +1,11 @@
 "use client";
 import { useFormStatus } from "react-dom";
 import { Icon } from "@/app/components/site-chrome";
-export function UnlockButton() {
+export function UnlockButton({ label = "Open report" }: { label?: string }) {
   const { pending } = useFormStatus();
   return (
     <button className="button button-coral" type="submit" disabled={pending}>
-      {pending ? "Opening…" : "Open report"}
+      {pending ? "Opening…" : label}
       <Icon name="arrow" />
     </button>
   );

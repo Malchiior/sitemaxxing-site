@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { randomBytes, timingSafeEqual } from "node:crypto";
 import { generateCode, hashCode, isValidHost, type ReportMeta } from "@/lib/reports";
-import { saveReport } from "@/lib/storage";
+import { readMeta, saveReport } from "@/lib/storage";
 
 export const runtime = "nodejs";
 const MAX_FILE = 3 * 1024 * 1024;
@@ -29,6 +29,8 @@ export async function PUT(req: Request) {
 
   const { host, kind, pages, summary, files } = body;
   if (!isValidHost(host)) return NextResponse.json({ error: "invalid host" }, { status: 400 });
+  if ((await readMeta(host))?.kind === "handoff")
+    return NextResponse.json({ error: "this address is reserved for a project handoff" }, { status: 409 });
   if (kind !== "page" && kind !== "pages") return NextResponse.json({ error: "invalid kind" }, { status: 400 });
   if (typeof pages !== "number" || !Number.isInteger(pages) || pages < 1 || pages > 50)
     return NextResponse.json({ error: "invalid pages" }, { status: 400 });

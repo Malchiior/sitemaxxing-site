@@ -42,12 +42,17 @@ export function cookieName(host: string): string {
 
 export type ReportMeta = {
   host: string;
-  kind: "page" | "pages";
+  kind: "page" | "pages" | "handoff";
   pages: number;
   summary: string;
   codeHash: string;
   salt: string;
   createdAt: string;
+  handoff?: {
+    title?: string;
+    prefix: string;
+    files: { path: string; bytes: number; sha256: string }[];
+  };
 };
 
 /** Small in-memory rate limit per key. Resets per server instance; enough to slow a 6-digit guess. */
